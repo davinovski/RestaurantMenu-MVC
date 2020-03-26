@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Mvc;
 using RestaurantMenuApp.Models;
 using RestaurantMenuApp.Repository;
 using RestaurantMenuApp.ViewModels;
+using RestaurantMenuApp.ActionFilters;
+
 
 namespace RestaurantMenuApp.Controllers
 {
@@ -54,11 +56,11 @@ namespace RestaurantMenuApp.Controllers
             return View(createViewModel);
         }
 
-        // GET: Meals/Breakfast/meals
+        // GET: menu/Breakfast/meals
+        [LoggerActionFilter]
         [Route("menu/{type}/meals")]
         public ActionResult Get(string type)
         {
-            Helper.CheckAndWrite(type + " - " + DateTime.Now);
             List<Meal> meals = DataHolder.Meals.Where(m => m.MealType.TypeMeal.ToString().ToLower().Equals(type.ToLower())).ToList();
             return View("Index", meals);
         }
