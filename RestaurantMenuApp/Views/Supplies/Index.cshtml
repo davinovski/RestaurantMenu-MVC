@@ -1,0 +1,74 @@
+﻿@model IEnumerable<RestaurantMenuApp.Models.Supply>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Supplies</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-outline-success"><i class="fa fa-plus"></i> Add New</a>
+</p>
+<table class="table" id="my-table">
+    <thead class="bg-light">
+        <tr>
+            <th class="text-center">
+                @Html.DisplayNameFor(model => model.Ingredient.Name)
+            </th>
+            <th class="text-center">
+                @Html.DisplayNameFor(model => model.Quantity)
+            </th>
+            <th class="text-center">
+                @Html.DisplayNameFor(model => model.DateOfExpiration)
+            </th>
+            <th class="text-center">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td class="text-center">
+                    @Html.DisplayFor(modelItem => item.Ingredient.Name)
+                </td>
+                <td class="text-center">
+                    @Html.DisplayFor(modelItem => item.Quantity)
+                </td>
+                <td class="text-center">
+                    @Html.DisplayFor(modelItem => item.DateOfExpiration)
+                </td>
+                <td class="text-center">
+                    <a asp-action="Edit" asp-route-id="@item.Ingredient.Id" class="btn btn-outline-warning"><i class="fa fa-edit"></i> Edit</a>
+                    &nbsp;<button class="btn btn-outline-danger js-delete" supply-id="@item.Ingredient.Id"><i class="fa fa-trash"></i> Delete</button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            var table = $("#my-table");
+            $("#my-table .js-delete").click(function () {
+                var button = $(this);
+                var id = button.attr("supply-id");
+                var URL = "/supplies/delete/" + id;
+                var x = confirm("Are you sure you want to delete this supply?");
+                if (x) {
+                    $.ajax({
+                        url: URL,
+                        method: "DELETE",
+                        success: function (response) {
+                            var parent = button.parents("tr");
+                            $(parent).fadeOut("slow",
+                                function () {
+                                    table.row(parent).remove().draw();
+                                });
+                        }
+                    });
+                }
+                });
+    });
+    </script>
+}

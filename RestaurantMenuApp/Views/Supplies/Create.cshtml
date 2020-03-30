@@ -1,0 +1,41 @@
+﻿@model RestaurantMenuApp.ViewModels.CreateSupplyViewModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Supply</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="chosenIngredient" class="control-label"></label><br />
+                @Html.DropDownListFor(m => m.chosenIngredient, new SelectList(Model.AvailableIngredients, "Id" , "Name", Model.chosenIngredient), new { @class = "form-control" })
+                <span asp-validation-for="chosenIngredient" class="text-danger"></span>
+
+            </div>
+            <div class="form-group">
+                <label asp-for="Quantity" class="control-label"></label>
+                <input asp-for="Quantity" class="form-control" />
+                <span asp-validation-for="Quantity" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DateOfExpiration" class="control-label"></label>
+                <input asp-for="DateOfExpiration" class="form-control" />
+                <span asp-validation-for="DateOfExpiration" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <a asp-action="Index" class="btn btn-outline-warning"><i class="fa fa-undo"></i> Back to List</a>
+                <button type="submit" class="btn btn-outline-primary"><i class="fa fa-save"></i> Save</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

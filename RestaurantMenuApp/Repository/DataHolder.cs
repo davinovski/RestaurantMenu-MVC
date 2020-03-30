@@ -16,7 +16,7 @@ namespace RestaurantMenuApp.Repository
         public static Ingredient Oregano = new Ingredient(4, "Oregano");
         public static Ingredient Pepperoni = new Ingredient(5, "Pepperoni");
         public static Ingredient Onion = new Ingredient(6, "Onion");
-        public static Ingredient Egg = new Ingredient(7, "Cheese");
+        public static Ingredient Egg = new Ingredient(7, "Egg");
         public static Ingredient Chicken = new Ingredient(8, "Chicken");
         public static Ingredient Bacon = new Ingredient(9, "Bacon");
         public static Ingredient Avocado = new Ingredient(10, "Avocado");
@@ -35,6 +35,16 @@ namespace RestaurantMenuApp.Repository
             Bacon,
             Avocado,
             Pineapple
+        };
+
+        public static List<Supply> Supplies = new List<Supply>()
+        {
+            new Supply(TomatoSauce, 8.21, DateTime.Now.AddMonths(2).ToString("MM-dd-yyyy")),
+            new Supply(Cheese, 32.5, DateTime.Now.AddDays(15).ToString("MM-dd-yyyy")),
+            new Supply(Mushroom, 7.2, DateTime.Now.AddDays(2).ToString("MM-dd-yyyy")),
+            new Supply(Oregano, 3, DateTime.Now.AddYears(2).ToString("MM-dd-yyyy")),
+            new Supply(Onion, 3.8, DateTime.Now.AddDays(7).ToString("MM-dd-yyyy")),
+            new Supply(Pepperoni, 4.2, DateTime.Now.AddDays(2).ToString("MM-dd-yyyy"))
         };
 
         public static List<MealType> MealTypes = new List<MealType>()

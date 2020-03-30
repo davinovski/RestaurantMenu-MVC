@@ -16,17 +16,18 @@ namespace RestaurantMenuApp.ViewModels
 
         [Required]
         [DessertPriceValidation]
+        [Range(1, int.MaxValue, ErrorMessage = "Price must be greater than 0.")]
         public int Price { get; set; }
 
         [Required]
-        [Display(Name="Choose Meal type")]
+        [Display(Name="Meal type")]
         public int MealTypeId { get; set; }
 
         [Display(Name = "Is vegetarian?")]
         public bool IsVegetarian { get; set; }
 
         [Required]
-        [Display(Name="Choose Ingredients")]
+        [Display(Name="Ingredients")]
         public int[] ChosenIngredients { get; set; }
 
         public List<Ingredient> Ingredients { get; set; }

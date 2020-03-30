@@ -8,25 +8,28 @@ using System.Threading.Tasks;
 
 namespace RestaurantMenuApp.Models
 {
-        public class Meal
-        {
-            public static int counter = 0;
-            public int Id { get; set; }
-            [Required]
-            [MaxLength(150,ErrorMessage ="The Name of the meal should not be longer than 150 characters.")]
-            public string Name { get; set; }
-            [Required]
-            [DessertPriceValidation]
-            public int Price { get; set; }
-            [Required]
-            public List<Ingredient> Ingredients { get; set; }
+    public class Meal
+    {
+        public static int counter = 0;
+        public int Id { get; set; }
+        [Required]
+        [MaxLength(150, ErrorMessage = "The Name of the meal should not be longer than 150 characters.")]
+        public string Name { get; set; }
+        [Required]
+        [DessertPriceValidation]
+        [Range(1, int.MaxValue, ErrorMessage = "Price must be greater than 0.")]
+        public int Price { get; set; }
+        [Required]
+        public List<Ingredient> Ingredients { get; set; }
 
-            [Required]
-            public int MealTypeId { get; set; }
+        [Required]
+        public int MealTypeId { get; set; }
 
-            public MealType MealType { get; set; }
+        [Display(Name = "Meal Type")]
+        public MealType MealType { get; set; }
 
-            public bool IsVegetarian { get; set; }
+        [Display(Name = "Vegetarian")]
+        public bool IsVegetarian { get; set; }
 
         public Meal(string name, int price, List<Ingredient> ingredients, int mealTypeId, bool isVegetarian)
         {
@@ -36,7 +39,7 @@ namespace RestaurantMenuApp.Models
             Ingredients = ingredients;
             MealTypeId = mealTypeId;
             IsVegetarian = isVegetarian;
-            MealType = DataHolder.MealTypes.Find(mt => mt.Id==mealTypeId);
+            MealType = DataHolder.MealTypes.Find(mt => mt.Id == mealTypeId);
         }
 
     }

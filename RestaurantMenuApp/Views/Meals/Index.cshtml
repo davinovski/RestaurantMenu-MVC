@@ -4,13 +4,13 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h1>Meals</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create" class="btn btn-outline-success"><i class="fa fa-plus"></i> Add New</a>
 </p>
 <table class="table" id="my-table">
-    <thead>
+    <thead class="bg-light">
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.Id)
@@ -52,7 +52,7 @@
                     @Html.DisplayFor(modelItem => item.MealType.TypeMeal)
                 </td>
                 <td class="text-center">
-                    @Html.DisplayFor(modelItem => item.IsVegetarian)
+                    <i class="@(item.IsVegetarian ? "fa fa-check text-success" : "fa fa-times text-danger")"></i>
                 </td>
                 <td>
                     @foreach (var i in item.Ingredients)
@@ -61,8 +61,8 @@
                     }
                 </td>
                 <td>
-                    <button class="btn btn-link js-delete" meal-id="@item.Id">
-                        Delete
+                    <button class="btn btn-outline-danger js-delete" meal-id="@item.Id">
+                        <i class="fa fa-trash"></i> Delete
                     </button>
                 </td>
             </tr>
