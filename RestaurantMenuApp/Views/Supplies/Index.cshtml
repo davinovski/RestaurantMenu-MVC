@@ -6,51 +6,42 @@
 
 <h1>Supplies</h1>
 
-<p>
+<div>
     <a asp-action="Create" class="btn btn-outline-success"><i class="fa fa-plus"></i> Add New</a>
-</p>
-<table class="table" id="my-table">
-    <thead class="bg-light">
-        <tr>
-            <th class="text-center">
-                @Html.DisplayNameFor(model => model.Ingredient.Name)
-            </th>
-            <th class="text-center">
-                @Html.DisplayNameFor(model => model.Quantity)
-            </th>
-            <th class="text-center">
-                @Html.DisplayNameFor(model => model.DateOfExpiration)
-            </th>
-            <th class="text-center">Actions</th>
-        </tr>
-    </thead>
-    <tbody>
+</div>
+<div>
+    <div class="row p-3">
         @foreach (var item in Model)
         {
-            <tr>
-                <td class="text-center">
-                    @Html.DisplayFor(modelItem => item.Ingredient.Name)
-                </td>
-                <td class="text-center">
-                    @Html.DisplayFor(modelItem => item.Quantity)
-                </td>
-                <td class="text-center">
-                    @Html.DisplayFor(modelItem => item.DateOfExpiration)
-                </td>
-                <td class="text-center">
-                    <a asp-action="Edit" asp-route-id="@item.Ingredient.Id" class="btn btn-outline-warning"><i class="fa fa-edit"></i> Edit</a>
-                    &nbsp;<button class="btn btn-outline-danger js-delete" supply-id="@item.Ingredient.Id"><i class="fa fa-trash"></i> Delete</button>
-                </td>
-            </tr>
+            <div class="col-4">
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <div class="text-uppercase font-weight-bold text-center">
+                          
+                            @Html.DisplayFor(modelItem => item.Ingredient.Name)
+                            
+                        </div>
+                    </div>
+                    <div class="card-body text-center">
+                        <b>@Html.DisplayNameFor(model => model.Quantity)</b>: @Html.DisplayFor(modelItem => item.Quantity) kg
+                        <br />
+                        <b>@Html.DisplayNameFor(model => model.DateOfExpiration)</b>: @Html.DisplayFor(modelItem => item.DateOfExpiration)
+                        <br />
+                    </div>
+                    <div class="card-footer text-center">
+                        <a asp-action="Edit" asp-route-id="@item.Ingredient.Id" class="btn btn-outline-warning float-left"><i class="fa fa-edit"></i></a>
+                        <button class="btn btn-outline-danger js-delete float-right" supply-id="@item.Ingredient.Id"><i class="fa fa-trash"></i></button>
+                    </div>
+                </div>
+            </div>
         }
-    </tbody>
-</table>
+    </div>
+</div>
 
 @section Scripts {
     <script>
         $(document).ready(function () {
-            var table = $("#my-table");
-            $("#my-table .js-delete").click(function () {
+            $(".js-delete").click(function () {
                 var button = $(this);
                 var id = button.attr("supply-id");
                 var URL = "/supplies/delete/" + id;
@@ -60,11 +51,12 @@
                         url: URL,
                         method: "DELETE",
                         success: function (response) {
-                            var parent = button.parents("tr");
+                            var parent = button.parents(".col-4");
                             $(parent).fadeOut("slow",
                                 function () {
-                                    table.row(parent).remove().draw();
+                                    parent.remove();
                                 });
+
                         }
                     });
                 }

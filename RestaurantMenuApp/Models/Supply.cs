@@ -17,6 +17,7 @@ namespace RestaurantMenuApp.Models
 
         [Required]
         [Display(Name="Date of Expiration")]
+        [RegularExpression(@"((0[13578]|1[02])-(0[1-9]|[12]\d|3[01])-[12]\d{3})|((02)-(0[1-9]|1[1-9]|2[1-8])-[12]\d{3})|((0[469]|11)-(0[1-9]|[12]\d|30)-[12]\d{3})", ErrorMessage = "Date should be in format MM-dd-YYYY")]
         public string DateOfExpiration { get; set; }
 
         public Supply()

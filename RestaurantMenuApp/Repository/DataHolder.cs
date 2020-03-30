@@ -39,12 +39,12 @@ namespace RestaurantMenuApp.Repository
 
         public static List<Supply> Supplies = new List<Supply>()
         {
-            new Supply(TomatoSauce, 8.21, DateTime.Now.AddMonths(2).ToString("MM-dd-yyyy")),
-            new Supply(Cheese, 32.5, DateTime.Now.AddDays(15).ToString("MM-dd-yyyy")),
-            new Supply(Mushroom, 7.2, DateTime.Now.AddDays(2).ToString("MM-dd-yyyy")),
-            new Supply(Oregano, 3, DateTime.Now.AddYears(2).ToString("MM-dd-yyyy")),
-            new Supply(Onion, 3.8, DateTime.Now.AddDays(7).ToString("MM-dd-yyyy")),
-            new Supply(Pepperoni, 4.2, DateTime.Now.AddDays(2).ToString("MM-dd-yyyy"))
+            new Supply(TomatoSauce, 8.21, "04-15-2020"),
+            new Supply(Cheese, 32.5, "05-30-2020"),
+            new Supply(Mushroom, 7.2, "04-01-2020"),
+            new Supply(Oregano, 3, "12-12-2021"),
+            new Supply(Onion, 3.8, "05-01-2020"),
+            new Supply(Pepperoni, 4.2, "04-03-2020")
         };
 
         public static List<MealType> MealTypes = new List<MealType>()
